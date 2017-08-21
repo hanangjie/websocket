@@ -58,7 +58,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-websocket.listen(8000)
+websocket.server.listen(8000)
 
 
 module.exports = app;

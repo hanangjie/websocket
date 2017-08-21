@@ -15,8 +15,11 @@ list.forEach(function(i,e){
   });
 })
 
-router.get('/loginCode', function(req, res, next) {
-  res.render('loginCode');
+router.get('/loginCode.do', function(req, res, next) {
+  res.render('loginCode',{img: "a.jpg"});
+});
+router.get('/login.do', function(req, res, next) {
+  res.render('login',{img: "a.jpg"});
 });
 
 module.exports = router;
