@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs')
+var QRCode = require('qrcode')
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,7 +18,11 @@ list.forEach(function(i,e){
 })
 
 router.get('/loginCode.do', function(req, res, next) {
-  res.render('loginCode',{img: "a.jpg"});
+  console.log(req)
+  QRCode.toDataURL('/login', function (err, url) {
+    res.render('loginCode',{img: url});
+  })
+  
 });
 router.get('/login.do', function(req, res, next) {
   res.render('login',{img: "a.jpg"});

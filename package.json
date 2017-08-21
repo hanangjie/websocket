@@ -17,6 +17,7 @@
     "faye-websocket": "^0.11.1",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
+    "qrcode": "^0.9.0",
     "serve-favicon": "~2.3.0"
   }
 }
