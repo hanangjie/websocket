@@ -59,6 +59,7 @@ app.use(function(err, req, res, next) {
 });
 
 websocket.server.listen(8000)
+websocket.loginServer.listen(8002)
 
 
 module.exports = app;

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs')
 var QRCode = require('qrcode')
+const os=require('os')
 
 
 /* GET home page. */
@@ -18,9 +19,10 @@ list.forEach(function(i,e){
 })
 
 router.get('/loginCode.do', function(req, res, next) {
-  console.log(req)
-  QRCode.toDataURL('/login', function (err, url) {
-    res.render('loginCode',{img: url});
+  var host=`${req.protocol}://${req.host}:3000`;
+  var random=parseInt(Math.random()*1000000000)
+  QRCode.toDataURL(`${host}/login?random=${random}`, function (err, url) {
+    res.render('loginCode',{img: url,random:random});
   })
   
 });

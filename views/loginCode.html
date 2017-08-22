@@ -3,6 +3,19 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   </head>
   <body>
-    <div><img src="<%= img %>" alt=""></div>
+    <style>
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .center img{
+        width:200px;
+        height:200px;
+      }
+    </style>
+    <div id="random" style="display:none"><%= random %></div>
+    <div class="center"><img src="<%= img %>" alt=""></div>
+  <script src="/js/code.js"></script>
   </body>
 </html>

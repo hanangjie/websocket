@@ -1,10 +1,9 @@
 
-var wsServer = 'ws://'+location.hostname+':8002';
-var random=location.search.split('random=')[1];
-
+var wsServer = 'ws://'+location.hostname+':8002'
 var ws ;
+var random=document.getElementById('random').innerHTML;
 var sendObj={
-    login:random
+    random:random
 }
 ws = new WebSocket(wsServer);
 
@@ -14,4 +13,3 @@ ws.onopen = function (e) {
 setTimeout(function(){
     ws.send(JSON.stringify(sendObj));
 },1000)
-

@@ -5,7 +5,9 @@ http      = require('http');
 var debug = require('debug')('socket:websocket');
 var msgList=[]
 ,sendMsg=false
-,wsList=[]
+,wsList=[],
+loginWs=[],
+loginCodeList=[]
 ;
 
 
@@ -51,30 +53,26 @@ var loginServer=http.createServer();
 loginServer.on('upgrade', function(request, socket, body) {
   if (WebSocket.isWebSocket(request)) {
     var ws = new WebSocket(request, socket, body);
-    wsList.push(ws);
+    loginWs.push(ws);//客户端列表
     ws.on('message', function(event) {
-      var time=new Date().getTime();
-      var times=event.data.slice(event.data.indexOf("times:")+6,event.data.indexOf(",name"));
+      var obj=event.data.replace('login','random')
+      loginCodeList.push(event.data);
      
-      msgList.push(event.data+",ser:{time:"+time+",num:"+wsList.length+"}");
-      
-      if(msgList.length>100){
-       msgList=msgList.slice(1); 
-      }
-      for(var i=0;i<wsList.length;i++){
-      if(times==1 &&(i==wsList.length-1)){
-        wsList[i].send(msgList.join("||"));
-      }else{
-          wsList[i].send(msgList[(msgList.length-1)]);
-      }
+      for(var i=0;i<loginWs.length;i++){
+        if(loginCodeList.indexOf(obj)!=-1&&event.data.indexOf('login')!=-1){
+          //当前二维码 有人扫
+          loginWs[i].send(loginCodeList[i]+',{login:true}');
+        }else{
+          loginWs[i].send(loginCodeList[i]);
+        }
       }
       debug('msg', event.data);
     });
     
     ws.on('close', function(event) {
-      for(var q=0;q<wsList.length;q++){
-        if(wsList[q]._stream._idleStart==ws._stream._idleStart){
-          wsList.splice(q,1);
+      for(var q=0;q<loginWs.length;q++){
+        if(loginWs[q]._stream._idleStart==ws._stream._idleStart){
+          loginWs.splice(q,1);
         }
       }
         console.log('close', event.code, event.reason);
