@@ -55,13 +55,15 @@ loginServer.on('upgrade', function(request, socket, body) {
     var ws = new WebSocket(request, socket, body);
     loginWs.push(ws);//客户端列表
     ws.on('message', function(event) {
-      var obj=event.data.replace('login','random')
+      var obj=event.data.replace('login','random').replace("ok","random");
       loginCodeList.push(event.data);
      
       for(var i=0;i<loginWs.length;i++){
         if(loginCodeList.indexOf(obj)!=-1&&event.data.indexOf('login')!=-1){
           //当前二维码 有人扫
           loginWs[i].send(loginCodeList[i]+',{login:true}');
+        } else if(loginCodeList.indexOf(obj)!=-1&&event.data.indexOf('ok')!=-1){ 
+          loginWs[i].send(loginCodeList[i]+',{ok:true}');
         }else{
           loginWs[i].send(loginCodeList[i]);
         }
