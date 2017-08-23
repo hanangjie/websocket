@@ -40,6 +40,7 @@ var ws ;
 ws = new WebSocket(wsServer);
 
 ws.onopen = function (e) {
+	setup("大家好！我是"+sex,ws);
 	//log("Connected to WebSocket server.");
 } ;
 function setup(mmm,ws){
@@ -138,9 +139,6 @@ $("#start").tap(function(){
 	}
 	
 	//进行初始发送
-	setTimeout(function(){
-	setup("大家好！我是"+sex,ws);
-	},1000);
 });
 
 /*判断是否已经登录过*/

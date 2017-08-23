@@ -12,6 +12,7 @@ var loginObj={
 ws = new WebSocket(wsServer);
 
 ws.onopen = function (e) {
+    ws.send(JSON.stringify(sendObj));
     console.log("Connected to WebSocket server.");
 } ;
 ws.onmessage = function(e) {
@@ -21,7 +22,4 @@ ws.onmessage = function(e) {
 document.getElementById('login').onclick=function(){
     ws.send(JSON.stringify(loginObj));
 }
-setTimeout(function(){
-    ws.send(JSON.stringify(sendObj));
-},1000)
 
