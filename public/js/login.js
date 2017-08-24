@@ -4,10 +4,12 @@ var random=location.search.split('random=')[1];
 
 var ws ;
 var sendObj={
-    login:random
+    id:random,
+    action:'start'
 }
 var loginObj={
-    ok:random
+    id:random,
+    action:'login'
 }
 ws = new WebSocket(wsServer);
 
