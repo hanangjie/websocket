@@ -19,5 +19,8 @@
     "morgan": "~1.7.0",
     "qrcode": "^0.9.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "address": "^1.0.3"
   }
 }

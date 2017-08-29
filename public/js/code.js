@@ -19,8 +19,8 @@ ws.onmessage = function(e) {
             }
             if(arr[i].action=="login"){
                 cont.innerHTML = '登录成功';
-                localStorage.name='手机';
-                localStorage.sex='boy';
+                localStorage.name=arr[i].name;
+                localStorage.sex=(parseInt(Math.random()*10)%2)==1?'boy':'girl';
                 setTimeout(function() {
                   location.href='./nsn'
                 }, 1000);

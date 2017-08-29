@@ -40,7 +40,19 @@ var ws ;
 ws = new WebSocket(wsServer);
 
 ws.onopen = function (e) {
-	setup("大家好！我是"+sex,ws);
+	
+	/*判断是否已经登录过*/
+	if(localStorage.name!=undefined){
+		$enter.hide();
+		$first.show();
+			$(".loading").show();
+		user=localStorage.name;
+		sex=localStorage.sex;
+		setTimeout(function(){
+		setup("大家好！我是"+sex,ws);
+		},1000);
+	}
+
 	//log("Connected to WebSocket server.");
 } ;
 function setup(mmm,ws){
@@ -140,18 +152,6 @@ $("#start").tap(function(){
 	
 	//进行初始发送
 });
-
-/*判断是否已经登录过*/
-if(localStorage.name!=undefined){
-	$enter.hide();
-	$first.show();
-		$(".loading").show();
-	user=localStorage.name;
-	sex=localStorage.sex;
-	setTimeout(function(){
-	setup("大家好！我是"+sex,ws);
-	},1000);
-}
 
 
 function warmNo(){

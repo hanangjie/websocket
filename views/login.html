@@ -15,13 +15,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             width: 80%;
         }
     </style>
-      <div class="ui-btn-wrap">
-          <button class="ui-btn-lg ui-btn-primary" id="login">
-              登录
-          </button>
+      <div class="ui-btn-wrap ui-form ui-border-t">
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="text" id="name" placeholder="用户名">
+            </div>
+            <button class="ui-btn-lg ui-btn-primary" id="login">
+                登录
+            </button>
       </div>
   </body>
   <script src="/js/login.js"></script>

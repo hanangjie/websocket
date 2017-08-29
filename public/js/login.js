@@ -22,6 +22,7 @@ ws.onmessage = function(e) {
 }
 
 document.getElementById('login').onclick=function(){
+    loginObj.name=document.getElementById('name').value
     ws.send(JSON.stringify(loginObj));
 }
 
