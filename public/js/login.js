@@ -18,11 +18,30 @@ ws.onopen = function (e) {
     console.log("Connected to WebSocket server.");
 } ;
 ws.onmessage = function(e) {
-    console.log(e)
+
 }
 
 document.getElementById('login').onclick=function(){
-    loginObj.name=document.getElementById('name').value
-    ws.send(JSON.stringify(loginObj));
+    alert(1)
+    try{
+        var sex=document.querySelectorAll('[name="sex"]');
+        sex.forEach(function(e){
+            if(e.checked==true){
+                localStorage.sex=e.value
+                alert(2)
+            }
+        })
+    }catch(e){
+        alert(e)
+    }
+        sex.forEach(function(e){
+            if(e.checked==true){
+                localStorage.sex=e.value
+            }
+        })
+        loginObj.name=document.getElementById('name').value
+        localStorage.name=document.getElementById('name').value
+        ws.send(JSON.stringify(loginObj));
+        location.href='/nsn'
 }
 

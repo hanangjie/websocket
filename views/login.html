@@ -1,32 +1,44 @@
+<!DOCTYPE html>
 <html>
   <head>
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>登录</title> 
     <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/css/demo.css">
   </head>
   <body>
-      <style>
-          body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        .ui-btn-wrap{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 80%;
-        }
-    </style>
-      <div class="ui-btn-wrap ui-form ui-border-t">
-            <div class="ui-form-item ui-form-item-pure ui-border-b">
-                <input type="text" id="name" placeholder="用户名">
+
+<div id="enter" class="enter">
+        <ul class="ui-list ui-list-text ui-list-radio">
+            <li class="ui-border-t">
+                <label class="ui-radio" for="radio" >
+                    <input type="radio" checked="" name="sex" value="girl"  />
+                </label>
+                <p>
+                    女
+                </p>
+            </li>
+            <li class="ui-border-t">
+                <label class="ui-radio" for="radio" >
+                    <input type="radio" name="sex" value="boy" />
+                </label>
+                <p>
+                    男
+                </p>
+            </li>
+        </ul>
+             <div class="ui-form-item ui-border-b">
+                <label for="#">昵称</label>
+                <input type="text" placeholder="昵称" id="name" />
+                <a href="#" class="ui-icon-close">
+                </a>
             </div>
-            <button class="ui-btn-lg ui-btn-primary" id="login">
-                登录
-            </button>
-      </div>
+            <div class="ui-notice-btn">
+                <button class="ui-btn-primary ui-btn-lg" id="login">登录</button>
+            </div>
+            
+        </div>
   </body>
   <script src="/js/login.js"></script>
 </html>

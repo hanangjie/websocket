@@ -40,18 +40,7 @@ var ws ;
 ws = new WebSocket(wsServer);
 
 ws.onopen = function (e) {
-	
-	/*判断是否已经登录过*/
-	if(localStorage.name!=undefined){
-		$enter.hide();
-		$first.show();
-			$(".loading").show();
-		user=localStorage.name;
-		sex=localStorage.sex;
-		setTimeout(function(){
-		setup("大家好！我是"+sex,ws);
-		},1000);
-	}
+	check();
 
 	//log("Connected to WebSocket server.");
 } ;
@@ -128,6 +117,7 @@ function setup(mmm,ws){
 
 }
 
+
 checkBrowser();
 
 /*socket部分*********************************************/
@@ -152,7 +142,17 @@ $("#start").tap(function(){
 	
 	//进行初始发送
 });
-
+/*判断是否已经登录过*/
+function check(){
+	if(localStorage.name!=undefined){
+		$enter.hide();
+		$first.show();
+			$(".loading").show();
+		user=localStorage.name;
+		sex=localStorage.sex;
+		setup("大家好！我是"+sex,ws);
+	}
+}
 
 function warmNo(){
 	user = "没有名字的人";
