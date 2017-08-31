@@ -30,4 +30,9 @@ router.get('/login.do', function(req, res, next) {
   res.render('login',{img: "a.jpg"});
 });
 
+
+router.get('/game24', function(req, res, next) {
+  res.render('game24',{img: "a.jpg"});
+});
+
 module.exports = router;
