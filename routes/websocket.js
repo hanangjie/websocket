@@ -84,4 +84,32 @@ loginServer.on('upgrade', function(request, socket, body) {
 });
 
 
-module.exports = {server,loginServer};
+var gameServer=http.createServer();
+var gameList=[];
+var gameWs=[];
+gameServer.on('upgrade', function(request, socket, body) {
+  if (WebSocket.isWebSocket(request)) {
+    var ws = new WebSocket(request, socket, body);
+    gameWs.push(ws);//客户端列表
+    ws.on('message', function(event) {
+      var obj=JSON.parse(event.data);
+      gameList.push(obj);
+      gameWs.forEach((item,i) => {
+        item.send(JSON.stringify(loginCodeList));
+      })
+     
+    });
+    
+    ws.on('close', function(event) {
+      for(var q=0;q<gameWs.length;q++){
+        if(gameWs[q]._stream._idleStart==ws._stream._idleStart){
+          gameWs.splice(q,1);
+        }
+      }
+        ws = null;
+    });
+  }
+});
+
+
+module.exports = {server,loginServer,gameServer};

@@ -32,7 +32,11 @@ router.get('/login.do', function(req, res, next) {
 
 
 router.get('/game24', function(req, res, next) {
-  res.render('game24',{img: "a.jpg"});
+  var host=`${req.protocol}://${req.host}:3000`;
+  var random=parseInt(Math.random()*1000000000)
+  QRCode.toDataURL(`${host}/game24?random=${random}`, function (err, url) {
+    res.render('game24',{img: url,random:random});
+  })
 });
 
 module.exports = router;

@@ -60,6 +60,7 @@ app.use(function(err, req, res, next) {
 
 websocket.server.listen(8000)
 websocket.loginServer.listen(8002)
+websocket.gameServer.listen(8003)
 
 
 module.exports = app;
