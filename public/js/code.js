@@ -20,7 +20,7 @@ ws.onmessage = function(e) {
             if(arr[i].action=="login"){
                 cont.innerHTML = '登录成功';
                 localStorage.name=arr[i].name;
-                localStorage.sex=(parseInt(Math.random()*10)%2)==1?'boy':'girl';
+                localStorage.sex=arr[i].sex;
                 setTimeout(function() {
                   location.href='./nsn'
                 }, 1000);

@@ -22,26 +22,14 @@ ws.onmessage = function(e) {
 }
 
 document.getElementById('login').onclick=function(){
-    alert(1)
-    try{
         var sex=document.querySelectorAll('[name="sex"]');
-        sex.forEach(function(e){
-            if(e.checked==true){
-                localStorage.sex=e.value
-                alert(2)
+        for(var i=0;i<sex.length;i++){
+            if(sex[i].checked==true){
+                localStorage.sex=loginObj.sex=sex[i].value;
             }
-        })
-    }catch(e){
-        alert(e)
-    }
-        sex.forEach(function(e){
-            if(e.checked==true){
-                localStorage.sex=e.value
-            }
-        })
-        loginObj.name=document.getElementById('name').value
-        localStorage.name=document.getElementById('name').value
+        }
+        localStorage.name=loginObj.name=document.getElementById('name').value
         ws.send(JSON.stringify(loginObj));
-        location.href='/nsn'
+        location.href='/nsn?device=phone'
 }
 

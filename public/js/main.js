@@ -45,7 +45,7 @@ ws.onopen = function (e) {
 	//log("Connected to WebSocket server.");
 } ;
 function setup(mmm,ws){
-	if(mmm=="")return;
+	
 	// a ' " \' \" \ \\ \\' \\" \\\ \\\' \\\" // /* 
 	mmm=mmm.replace(/</g,"&lt;");
 	mmm=mmm.replace(/>/g,"&gt;");
@@ -68,6 +68,9 @@ function setup(mmm,ws){
 			'\',sex:\''+sex+
 			'\',loc:\''+loc+
 			'\'}';
+		if(mmm==""){
+			option='local:{}';
+		}
 		if(ws.readyState==1){
 			ws.send(option);
 		}
@@ -89,6 +92,7 @@ function setup(mmm,ws){
 				re[q].local.sex=re[q].local.sex=="girl"?"/images/girl.png":"/images/boy.png";
 				$("#num").html("人："+re[q].ser.num);
 				console.log("人："+re[q].ser.num);
+				if(!re[q].local.name)continue;
 				html+='<li>'+
 						'<div class="ui-avatar-s">'+
 						'<span style="background-image:url('+re[q].local.sex+')"></span>'+
@@ -100,18 +104,19 @@ function setup(mmm,ws){
 						' </li>';
 			}
 			$("#contList").prepend(html);
+			$(".loading").hide();
 			$(window).scrollTop(0);
 		}
-		if(power.times!=1){
+	/* 	if(power.times!=1){
 			$("#send").addClass("active")
 			$("#send").html("5秒");
 			setTimeout(function(){
 				$("#send").removeClass("active").html("确定");
 				power.send=true;
 			},5000);
-		}else{
+		}else{ */
 			power.send=true;
-		}
+		
 }
 
 
@@ -147,10 +152,15 @@ function check(){
 	if(localStorage.name!=undefined){
 		$enter.hide();
 		$first.show();
-			$(".loading").show();
+		$(".loading").show();
 		user=localStorage.name;
 		sex=localStorage.sex;
-		setup("大家好！我是"+sex,ws);
+		if(location.search.indexOf('device=phone')!=-1){
+			setup("",ws);
+			//setup("大家好！我是"+sex,ws);
+		}else{
+			setup("大家好！我是"+sex,ws);
+		}
 	}
 }
 
