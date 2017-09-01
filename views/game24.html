@@ -5,12 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>24点</title>
   <style>
+    *{
+      box-sizing: border-box;
+    }
+    html{
+      height: 100%;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
     .box{
       display: flex;
       flex-wrap: wrap;
+      width: 100%;
     }
     .box div{
-      height: 100px;
+      height: 160px;
       width: 50%;
       justify-content: center;
       align-items: center;
@@ -18,15 +31,40 @@
       border:1px solid #dfdfdf;
       box-sizing: border-box;
     }
+    .vator{
+      position:absolute;
+      top:30px;
+      display: flex;
+      flex-direction: row;
+    }
+    .vator div{
+      width: 25%;
+      padding: 5px;
+      text-align: center;
+    }
+    .vator div img,.box img{
+      width: 100%;
+    }
   </style>
 </head>
 <body>
-  <div class="box">
-    <div><img src='<%= img %>'></div>
-    <div><img src='<%= img %>'><</div>
-    <div><img src='<%= img %>'><</div>
-    <div><img src='<%= img %>'><</div>
+  <div class="vator" style="display:none">
+      <div ><img src='/images/vator1.png'><span>玩家1</span></div>
+      <div ><img src='/images/vator2.png'><span>玩家1</span></div>
+      <div ><img src='/images/vator3.png'><span>玩家1</span></div>
+      <div ><img src='/images/vator4.png'><span>玩家1</span></div>
+    </div>
+  <div class="box" >
+      <div ><img src='/images/vator1.png'><span>玩家1</span></div>
+      <div ><img src='/images/vator2.png'><span>玩家1</span></div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div ><img src='/images/vator3.png'><span>玩家1</span></div>
+    <div ><img src='/images/vator4.png'><span>玩家1</span></div>
   </div>
+  <div class="" style="display:none"><img src='<%= img %>'></div>
   <script src='/js/game24.js'></script>
 </body>
 </html>

@@ -31,10 +31,10 @@ router.get('/login.do', function(req, res, next) {
 });
 
 
-router.get('/game24', function(req, res, next) {
+router.get('/game24.do', function(req, res, next) {
   var host=`${req.protocol}://${req.host}:3000`;
   var random=parseInt(Math.random()*1000000000)
-  QRCode.toDataURL(`${host}/game24?random=${random}`, function (err, url) {
+  QRCode.toDataURL(`${host}/game24-client?room=${random}`, function (err, url) {
     res.render('game24',{img: url,random:random});
   })
 });
