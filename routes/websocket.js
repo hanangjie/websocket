@@ -10,7 +10,7 @@ loginWs=[],
 loginCodeList=[]
 ;
 
-
+//聊天室
 var server = http.createServer();
 
 server.on('upgrade', function(request, socket, body) {
@@ -48,6 +48,7 @@ server.on('upgrade', function(request, socket, body) {
   }
 });
 
+//登录
 var loginServer=http.createServer();
 
 loginServer.on('upgrade', function(request, socket, body) {

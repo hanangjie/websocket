@@ -18,9 +18,25 @@ ws.onopen = function (e) {
     console.log("Connected to WebSocket server.");
 } ;
 ws.onmessage = function(e) {
-
+  console.log('send');
 }
 
+ws.onerror = function(e) {
+    console.log('it`s error')
+}
+
+ws.onclose = function(e) {
+    console.log('it`s close');
+    var t=setInterval(function(){
+        ws=null;
+        ws = new WebSocket(wsServer);
+        if(ws.readyState){
+            ws.send(JSON.stringify(sendObj));
+            clearInterval(t);
+        }
+    },1000)
+}
+    
 document.getElementById('login').onclick=function(){
         var sex=document.querySelectorAll('[name="sex"]');
         for(var i=0;i<sex.length;i++){
