@@ -39,4 +39,10 @@ router.get('/game24.do', function(req, res, next) {
   })
 });
 
+
+router.get('/iframe/:id', function(req, res, next) {
+  res.render('iframe',{num: req.params.id});
+});
+
+
 module.exports = router;

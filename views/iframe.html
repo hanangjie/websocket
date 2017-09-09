@@ -1,0 +1,28 @@
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+      <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        iframe{
+            width: 20%;
+            height: 100%;
+            float: left;
+            border:0;
+        }
+        </style>
+      <div id='cont'></div>
+      <script>
+            var num=<%=num %>;
+            var html='';
+            for(var i=0;i<num;i++){
+                html+='<iframe src="/loginCode.do"></iframe>';
+            }
+            document.getElementById('cont').innerHTML=html;
+      </script>
+  </body>
+</html>
